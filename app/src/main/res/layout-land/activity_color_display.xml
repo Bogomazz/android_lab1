@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:screenOrientation="landscape"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.example.macbook.lab1.ColorDisplayActivity">
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight=".70">
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.7"
+        >
 
         <Button
             android:id="@+id/button"
@@ -23,13 +19,11 @@
     </FrameLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.30"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight=".3"
         android:orientation="vertical"
-        android:gravity="center"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="0dp">
+        android:gravity="center">
 
 
         <SeekBar
@@ -68,4 +62,5 @@
             android:text="BLUE"
             android:gravity="center"/>
     </LinearLayout>
+
 </LinearLayout>
