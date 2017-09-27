@@ -12,24 +12,26 @@ import android.widget.TextView;
 import com.example.macbook.lab1.R;
 import com.example.macbook.lab1.models.Note;
 
+import java.util.ArrayList;
+
 public class NotesAdapter extends BaseAdapter {
 
     private final Context context;
-    private final Note[] notes;
+    private final ArrayList<Note> notes;
 
-    public NotesAdapter(Context context, Note[] notes) {
+    public NotesAdapter(Context context, ArrayList<Note> notes) {
         this.notes = notes;
         this.context = context;
     }
 
     @Override
     public int getCount() {
-        return notes.length;
+        return notes.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return notes[i];
+        return notes.get(i);
     }
 
     @Override
@@ -51,8 +53,8 @@ public class NotesAdapter extends BaseAdapter {
         TextView descriptionView = (TextView) convertView.findViewById(R.id.note_description);
         ImageView imageView = (ImageView) convertView.findViewById(R.id.note_image);
 
-        titleView.setText(notes[position].getTitle());
-        descriptionView.setText(notes[position].getDescription());
+        titleView.setText(notes.get(position).getTitle());
+        descriptionView.setText(notes.get(position).getDescription());
 
 
         return convertView;

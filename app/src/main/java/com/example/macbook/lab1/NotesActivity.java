@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.macbook.lab1.models.Note;
+import com.example.macbook.lab1.storage.NotesStorage;
 import com.example.macbook.lab1.tools.NotesAdapter;
 
 public class NotesActivity extends AppCompatActivity {
@@ -35,8 +36,11 @@ public class NotesActivity extends AppCompatActivity {
         note3.setTitle("Note3");
         note3.setDescription("Description for note 3");
 
-        Note[] notes = {note1, note2, note3};
-        NotesAdapter na = new NotesAdapter(this, notes);
+        NotesStorage.add(note1);
+        NotesStorage.add(note2);
+        NotesStorage.add(note3);
+
+        NotesAdapter na = new NotesAdapter(this, NotesStorage.get());
 
         ListView lv = (ListView) findViewById(R.id.list);
         lv.setAdapter(na);
