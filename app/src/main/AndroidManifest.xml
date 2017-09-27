@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".ColorDisplayActivity" />
         <activity android:name=".CalcActivity" />
-        <activity android:name=".NotesActivity"></activity>
+        <activity android:name=".NotesActivity" />
+        <activity android:name=".EditNoteActivity"></activity>
     </application>
 
 </manifest>
