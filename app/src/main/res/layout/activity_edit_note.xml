@@ -15,7 +15,7 @@
         app:srcCompat="@mipmap/ic_launcher_round" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/editTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -25,7 +25,7 @@
         tools:layout_editor_absoluteY="252dp" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/editDescription"
         android:layout_width="wrap_content"
         android:layout_height="43dp"
         android:ems="10"

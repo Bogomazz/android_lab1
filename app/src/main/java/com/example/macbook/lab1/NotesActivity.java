@@ -47,12 +47,21 @@ public class NotesActivity extends AppCompatActivity {
         NotesStorage.add(note2);
         NotesStorage.add(note3);
 
-        NotesAdapter na = new NotesAdapter(this, NotesStorage.get());
-
-        listView = (ListView) findViewById(R.id.list);
-        listView.setAdapter(na);
+        updateNoteList();
 
         registerForContextMenu(listView);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateNoteList();
+    }
+
+    private void updateNoteList() {
+        NotesAdapter na = new NotesAdapter(this, NotesStorage.get());
+        listView = (ListView) findViewById(R.id.list);
+        listView.setAdapter(na);
     }
 
     @Override
@@ -80,6 +89,7 @@ public class NotesActivity extends AppCompatActivity {
         else if(item.getTitle()=="Delete"){
             if(selectedListItemPosition != -1){
                 NotesStorage.remove(selectedListItemPosition);
+                updateNoteList();
             }
         }else{
             return false;

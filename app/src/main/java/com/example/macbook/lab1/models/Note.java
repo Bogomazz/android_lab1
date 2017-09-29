@@ -1,8 +1,11 @@
 package com.example.macbook.lab1.models;
 
+import android.net.Uri;
+
 public class Note {
     private String title;
     private String description;
+    private Uri imageUri;
 
 
     public String getTitle() {
@@ -19,5 +22,13 @@ public class Note {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Uri getImageUri() {
+        return imageUri;
+    }
+
+    public void setImageUri(Uri imageUri) {
+        this.imageUri = imageUri;
     }
 }
