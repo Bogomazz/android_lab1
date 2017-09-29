@@ -27,6 +27,7 @@ public class EditNoteActivity extends AppCompatActivity {
     private EditText descriptionET;
 
     private Note note = new Note();
+    boolean isNew = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +52,9 @@ public class EditNoteActivity extends AppCompatActivity {
             public void onClick(View view) {
                 note.setTitle(titleET.getText().toString());
                 note.setDescription(descriptionET.getText().toString());
+                if (isNew) {
+                    NotesStorage.add(note);
+                }
                 EditNoteActivity.this.finish();
             }
         });
@@ -69,6 +73,7 @@ public class EditNoteActivity extends AppCompatActivity {
 
         if (id != -1) {
             this.note = NotesStorage.get(id);
+            isNew = false;
         }
 
         titleET.setText(note.getTitle());
