@@ -2,10 +2,17 @@ package com.example.macbook.lab1.models;
 
 import android.net.Uri;
 
+import java.util.Date;
+
 public class Note {
     private String title;
     private String description;
     private Uri imageUri;
+    private Date date;
+
+    public Note(){
+        date = new Date();
+    }
 
 
     public String getTitle() {
@@ -30,5 +37,13 @@ public class Note {
 
     public void setImageUri(Uri imageUri) {
         this.imageUri = imageUri;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }

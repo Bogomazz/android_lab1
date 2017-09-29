@@ -17,6 +17,7 @@ import com.example.macbook.lab1.storage.NotesStorage;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.Date;
 
 public class EditNoteActivity extends AppCompatActivity {
 
@@ -52,6 +53,7 @@ public class EditNoteActivity extends AppCompatActivity {
             public void onClick(View view) {
                 note.setTitle(titleET.getText().toString());
                 note.setDescription(descriptionET.getText().toString());
+                note.setDate(new Date());
                 if (isNew) {
                     NotesStorage.add(note);
                 }

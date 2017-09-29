@@ -1,6 +1,8 @@
 package com.example.macbook.lab1.tools;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +14,12 @@ import android.widget.TextView;
 import com.example.macbook.lab1.R;
 import com.example.macbook.lab1.models.Note;
 
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class NotesAdapter extends BaseAdapter {
 
@@ -42,6 +49,7 @@ public class NotesAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
+        Note note = notes.get(position);
 
         if(convertView==null){
             LayoutInflater inflater = (LayoutInflater)
@@ -51,10 +59,26 @@ public class NotesAdapter extends BaseAdapter {
 
         TextView titleView = (TextView) convertView.findViewById(R.id.note_title);
         TextView descriptionView = (TextView) convertView.findViewById(R.id.note_description);
-        ImageView imageView = (ImageView) convertView.findViewById(R.id.note_image);
+        TextView dateView = (TextView) convertView.findViewById(R.id.dateRow);
 
-        titleView.setText(notes.get(position).getTitle());
-        descriptionView.setText(notes.get(position).getDescription());
+
+
+        if (note.getImageUri() != null) {
+            ImageView imageView = (ImageView) convertView.findViewById(R.id.note_image);
+            try{
+                final InputStream imageStream = context.getContentResolver().openInputStream(note.getImageUri());
+                final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+                imageView.setImageBitmap(selectedImage);
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
+            }
+
+        }
+
+        titleView.setText(note.getTitle());
+        descriptionView.setText(note.getDescription());
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        dateView.setText(dateFormat.format(note.getDate()));
 
 
         return convertView;
