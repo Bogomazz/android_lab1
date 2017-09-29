@@ -10,13 +10,11 @@
     android:useDefaultMargins="true">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/calcInput"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:text="0"
         android:gravity="end|center_vertical"
-        android:textSize="27sp"
-        />
+        android:textSize="27sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,6 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="onClick"
             android:text="7" />
 
         <Button
@@ -36,6 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="onClick"
             android:text="8" />
 
         <Button
@@ -43,6 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="onClick"
             android:text="9" />
 
         <Button
@@ -50,6 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="onClick"
             android:text="/" />
     </LinearLayout>
 
@@ -64,6 +66,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="onClick"
             android:text="4" />
 
         <Button
@@ -71,6 +74,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="onClick"
             android:text="5" />
 
         <Button
@@ -78,6 +82,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="onClick"
             android:text="6" />
 
         <Button
@@ -85,6 +90,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="onClick"
             android:text="*" />
     </LinearLayout>
 
@@ -99,6 +105,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="onClick"
             android:text="1" />
 
         <Button
@@ -106,6 +113,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="onClick"
             android:text="2" />
 
         <Button
@@ -113,6 +121,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="onClick"
             android:text="3" />
 
         <Button
@@ -120,6 +129,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="onClick"
             android:text="-" />
 
     </LinearLayout>
@@ -132,23 +142,32 @@
 
         <Button
             android:id="@+id/button15"
+            android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:onClick="onClick"
             android:text="0" />
 
         <Button
             android:id="@+id/button17"
+            android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:onClick="onClick"
             android:text="+" />
 
         <Button
-            android:id="@+id/button16"
-            android:layout_width="187dp"
-            android:layout_height="match_parent"
+            android:id="@+id/clearBtn"
             android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="C" />
+
+        <Button
+            android:id="@+id/evalBtn"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:text="=" />
     </LinearLayout>
 
