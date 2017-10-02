@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import android.app.SearchManager;
+import android.widget.ArrayAdapter;
 import android.widget.SearchView;
 import android.widget.SearchView.OnQueryTextListener;
 
@@ -22,6 +23,7 @@ import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 import com.example.macbook.lab1.models.Note;
 import com.example.macbook.lab1.storage.NotesStorage;
@@ -51,9 +53,9 @@ public class NotesActivity extends AppCompatActivity implements SearchView.OnQue
         note3.setTitle("Note3");
         note3.setDescription("Description for note 3");
 
-        NotesStorage.add(note1);
-        NotesStorage.add(note2);
-        NotesStorage.add(note3);
+//        NotesStorage.add(note1);
+//        NotesStorage.add(note2);
+//        NotesStorage.add(note3);
 
         updateNoteList(null);
         handleIntent(getIntent());
@@ -137,6 +139,35 @@ public class NotesActivity extends AppCompatActivity implements SearchView.OnQue
 
         searchView.setSubmitButtonEnabled(true);
         searchView.setOnQueryTextListener(this);
+        MenuItem item = menu.findItem(R.id.spinner);
+        Spinner spinner = (Spinner) MenuItemCompat.getActionView(item); // get the spinner
+        final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.importance_array, android.R.layout.simple_spinner_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                switch(i){
+                    case 0:
+                        updateNoteList(null);
+                        break;
+                    case 1:
+                        updateNoteList(NotesStorage.getHigh());
+                        break;
+                    case 2:
+                        updateNoteList(NotesStorage.getLow());
+                        break;
+                    case 3:
+                        updateNoteList(NotesStorage.getDefault());
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         return super.onCreateOptionsMenu(menu);
     }

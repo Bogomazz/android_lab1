@@ -90,6 +90,18 @@ public class EditNoteActivity extends AppCompatActivity {
                 ex.printStackTrace();
             }
         }
+
+        switch (note.getImportance()) {
+            case 0:
+                ((RadioButton) findViewById(R.id.radioDefault)).setChecked(true);
+                break;
+            case 1:
+                ((RadioButton) findViewById(R.id.radioLow)).setChecked(true);
+                break;
+            case 2:
+                ((RadioButton) findViewById(R.id.radioHigh)).setChecked(true);
+                break;
+        }
     }
 
     public void onRadioButtonClicked(View view) {

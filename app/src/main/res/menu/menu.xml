@@ -7,6 +7,27 @@
         app:showAsAction="collapseActionView|ifRoom"
         app:actionViewClass="android.widget.SearchView" />
 
+    <item
+        android:title="importance"
+        app:showAsAction="ifRoom"
+        android:id="@+id/spinner"
+        app:actionViewClass="android.widget.Spinner">
+        <menu>
+            <item
+                android:id="@+id/menuAll"
+                android:title="All" />
+            <item
+                android:id="@+id/menuHigh"
+                android:title="High" />
+            <item
+                android:id="@+id/menuLow"
+                android:title="Low" />
+            <item
+                android:id="@+id/menuDefault"
+                android:title="Default" />
+        </menu>
+    </item>
+
     <item android:id="@+id/action_add"
         android:icon="@drawable/ic_action_new"
         android:title="add"

@@ -38,4 +38,28 @@ public class NotesStorage {
 
         return result;
     }
+
+    public static ArrayList<Note> getHigh() {
+        return findByImportance(2);
+
+    }
+
+    public static ArrayList<Note> getLow() {
+        return findByImportance(1);
+    }
+
+    public static ArrayList<Note> getDefault() {
+        return findByImportance(0);
+    }
+
+    private static ArrayList<Note> findByImportance(int importance){
+        ArrayList<Note> result = new ArrayList<>();
+        for (Note note: notes) {
+            if (note.getImportance() == importance) {
+                result.add(note);
+            }
+        }
+
+        return result;
+    }
 }
