@@ -60,7 +60,7 @@ public class NotesAdapter extends BaseAdapter {
         TextView titleView = (TextView) convertView.findViewById(R.id.note_title);
         TextView descriptionView = (TextView) convertView.findViewById(R.id.note_description);
         TextView dateView = (TextView) convertView.findViewById(R.id.dateRow);
-
+        ImageView importanceView = (ImageView) convertView.findViewById(R.id.importance);
 
 
         if (note.getImageUri() != null) {
@@ -73,6 +73,15 @@ public class NotesAdapter extends BaseAdapter {
                 ex.printStackTrace();
             }
 
+        }
+
+        switch (note.getImportance()){
+            case 1:
+                importanceView.setImageResource(R.drawable.ic_importance_low);
+                break;
+            case 2:
+                importanceView.setImageResource(R.drawable.ic_importance_high);
+                break;
         }
 
         titleView.setText(note.getTitle());

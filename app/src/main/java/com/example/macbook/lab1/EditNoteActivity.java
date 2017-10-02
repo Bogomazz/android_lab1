@@ -119,10 +119,6 @@ public class EditNoteActivity extends AppCompatActivity {
         if (resultCode == RESULT_OK) {
             try{
                 final Uri imageUri = data.getData();
-//                this.grantUriPermission(this.getPackageName(), imageUri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
-//
-//                final int takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION;
-//                this.getContentResolver().takePersistableUriPermission(imageUri, takeFlags);
 
                 note.setImageUri(imageUri);
                 final InputStream imageStream = getContentResolver().openInputStream(imageUri);
