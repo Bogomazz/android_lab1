@@ -9,11 +9,11 @@ public class Note {
     private String description;
     private Uri imageUri;
     private Date date;
+    private int importance;
 
     public Note(){
         date = new Date();
     }
-
 
     public String getTitle() {
         return title;
@@ -45,5 +45,13 @@ public class Note {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public int getImportance() {
+        return importance;
+    }
+
+    public void setImportance(int importance) {
+        this.importance = importance;
     }
 }

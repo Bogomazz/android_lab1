@@ -26,4 +26,16 @@ public class NotesStorage {
     public static void remove(Note note) {
         notes.remove(note);
     }
+
+    public static ArrayList<Note> find(String s) {
+        ArrayList<Note> result = new ArrayList<>();
+        for (Note note: notes) {
+            if (note.getTitle().toLowerCase().contains(s.toLowerCase()) ||
+                note.getDescription().toLowerCase().contains(s.toLowerCase())) {
+                result.add(note);
+            }
+        }
+
+        return result;
+    }
 }

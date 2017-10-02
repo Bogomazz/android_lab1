@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 
 import com.example.macbook.lab1.models.Note;
 import com.example.macbook.lab1.storage.NotesStorage;
@@ -91,11 +92,38 @@ public class EditNoteActivity extends AppCompatActivity {
         }
     }
 
+    public void onRadioButtonClicked(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.radioHigh:
+                if (checked)
+                    this.note.setImportance(2);
+                break;
+            case R.id.radioDefault:
+                if (checked)
+                    this.note.setImportance(0);
+                break;
+            case R.id.radioLow:
+                if (checked)
+                    this.note.setImportance(1);
+                break;
+        }
+    }
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         if (resultCode == RESULT_OK) {
             try{
                 final Uri imageUri = data.getData();
+//                this.grantUriPermission(this.getPackageName(), imageUri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//
+//                final int takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION;
+//                this.getContentResolver().takePersistableUriPermission(imageUri, takeFlags);
+
                 note.setImageUri(imageUri);
                 final InputStream imageStream = getContentResolver().openInputStream(imageUri);
                 final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);

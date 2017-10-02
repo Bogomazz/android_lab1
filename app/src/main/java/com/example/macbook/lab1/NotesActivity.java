@@ -2,10 +2,17 @@ package com.example.macbook.lab1;
 
 import android.app.Activity;
 import android.app.ListActivity;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import android.app.SearchManager;
+import android.widget.SearchView;
+import android.widget.SearchView.OnQueryTextListener;
+
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -16,12 +23,13 @@ import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import com.example.macbook.lab1.models.Note;
 import com.example.macbook.lab1.storage.NotesStorage;
 import com.example.macbook.lab1.tools.NotesAdapter;
 
-public class NotesActivity extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class NotesActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
     ListView listView;
     int selectedListItemPosition = -1;
@@ -47,19 +55,35 @@ public class NotesActivity extends AppCompatActivity {
         NotesStorage.add(note2);
         NotesStorage.add(note3);
 
-        updateNoteList();
-
+        updateNoteList(null);
+        handleIntent(getIntent());
         registerForContextMenu(listView);
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        handleIntent(intent);
+    }
+
+    private void handleIntent(Intent intent) {
+
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
+            Log.v("Search string: ", query);
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        updateNoteList();
+        updateNoteList(null);
     }
 
-    private void updateNoteList() {
-        NotesAdapter na = new NotesAdapter(this, NotesStorage.get());
+    private void updateNoteList(ArrayList<Note> notes) {
+        if (notes == null){
+            notes = NotesStorage.get();
+        }
+        NotesAdapter na = new NotesAdapter(this, notes);
         listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(na);
     }
@@ -89,7 +113,7 @@ public class NotesActivity extends AppCompatActivity {
         else if(item.getTitle()=="Delete"){
             if(selectedListItemPosition != -1){
                 NotesStorage.remove(selectedListItemPosition);
-                updateNoteList();
+                updateNoteList(null);
             }
         }else{
             return false;
@@ -103,6 +127,17 @@ public class NotesActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
 
+        SearchManager searchManager =
+                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        MenuItem mi = menu.findItem(R.id.search);
+        SearchView searchView =
+                (SearchView) MenuItemCompat.getActionView(mi);
+        searchView.setSearchableInfo(
+                searchManager.getSearchableInfo(getComponentName()));
+
+        searchView.setSubmitButtonEnabled(true);
+        searchView.setOnQueryTextListener(this);
+
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -110,7 +145,7 @@ public class NotesActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Take appropriate action for each action item click
         switch (item.getItemId()) {
-            case R.id.action_search:
+            case R.id.search:
                 Log.v("v", "Search action clicked");
                 return true;
             case R.id.action_add:
@@ -124,4 +159,15 @@ public class NotesActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+        updateNoteList(NotesStorage.find(s));
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String s) {
+        updateNoteList(NotesStorage.find(s));
+        return true;
+    }
 }
