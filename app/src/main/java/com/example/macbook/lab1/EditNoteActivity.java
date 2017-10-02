@@ -75,7 +75,7 @@ public class EditNoteActivity extends AppCompatActivity {
 
 
         if (id != -1) {
-            this.note = NotesStorage.get(id);
+            this.note = NotesStorage.getById(id);
             isNew = false;
         }
 

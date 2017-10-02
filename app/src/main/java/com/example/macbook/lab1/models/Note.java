@@ -3,15 +3,22 @@ package com.example.macbook.lab1.models;
 import android.net.Uri;
 
 import java.util.Date;
+import java.util.Random;
 
 public class Note {
+    private int id;
     private String title;
     private String description;
     private Uri imageUri;
     private Date date;
     private int importance;
 
+    public int getId() {
+        return id;
+    }
+
     public Note(){
+        id = (new Random()).nextInt();
         date = new Date();
     }
 

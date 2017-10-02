@@ -106,8 +106,9 @@ public class NotesActivity extends AppCompatActivity implements SearchView.OnQue
         Log.v("menuItemId:", ""+item.getItemId());
         if(item.getTitle()=="Edit"){
             if (selectedListItemPosition != -1){
+                Note note = (Note)listView.getAdapter().getItem(selectedListItemPosition);
                 Intent intent = new Intent();
-                intent.putExtra("id", selectedListItemPosition);
+                intent.putExtra("id", note.getId());
                 intent.setClass(this, EditNoteActivity.class);
                 startActivity(intent);
             }

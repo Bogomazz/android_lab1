@@ -15,6 +15,16 @@ public class NotesStorage {
         return notes.get(position);
     }
 
+    public static Note getById(int id) {
+        for (Note note: notes){
+            if (note.getId() == id){
+                return note;
+            }
+        }
+
+        return null;
+    }
+
     public static void add(Note note) {
         notes.add(note);
     }
